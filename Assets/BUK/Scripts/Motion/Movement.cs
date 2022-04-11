@@ -46,15 +46,16 @@ namespace Buk.Motion
         body.velocity += Vector3.up * jumpVelocity;
       }
     }
+
     public void FixedUpdate()
     {
-      var newOnGround = body.SweepTest(-transform.up, out var _, 0.1f);
+      var newOnGround = Physics.SphereCast(transform.position, collider.bounds.extents.x * 0.9f, Vector3.down, out var _, collider.bounds.extents.y * 1.1f);
       if (onGround != newOnGround) {
         onGround = newOnGround;
         //Debug.Log($"Player is {(onGround ? "on" : "off")} the ground.");
       };
       // Rotate character in VR using controller, this value is always zero if using mouse look on the PC.
-      var rotation = rotate?.ReadValue<float>() ?? 0;
+      var rotation = (rotate?.ReadValue<Vector2>() ?? Vector2.zero).x;
       var movement = move?.ReadValue<Vector2>() ?? Vector2.zero;
       // Must be on the ground
       if (true || onGround)

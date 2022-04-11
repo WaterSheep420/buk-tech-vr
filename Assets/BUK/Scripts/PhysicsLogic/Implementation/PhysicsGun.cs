@@ -31,7 +31,7 @@ namespace Buk.PhysicsLogic.Implementation
         throw new Exception("You must add a bullet type!");
       }
 
-      if (bulletType.GetComponent<Rigidbody>() == null)
+      if (bulletType.GetComponentInChildren<Rigidbody>() == null)
       {
         throw new Exception("Your bullet must have a Rigidbody to use it with this gun!");
       }
@@ -50,10 +50,11 @@ namespace Buk.PhysicsLogic.Implementation
         // If the time since the last shot is less than the cooldown, we can't shoot yet. Do nothing.
         return;
       }
+      lastShotTime = Time.fixedTime;
       // Create a new copy of bulletType using the gun's position and rotation.
       Instantiate(bulletType, transform.position, transform.rotation)
         // Get the Rigidbody of that bullet, so that we can apply physics to it.
-        .GetComponent<Rigidbody>()
+        .GetComponentInChildren<Rigidbody>()
         // Apply velocity to the bullet's body, relative to its current position and rotation
         .AddRelativeForce(0f, muzzleVelocity, 0f, ForceMode.VelocityChange);
     }
