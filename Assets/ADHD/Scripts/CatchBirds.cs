@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CatchBirds : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private ParticleSystem featherEffect;
+    private GameObject birb;
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerStay(Collider other)
     {
-        
+        if (Input.GetButtonDown("Jump") && other.gameObject.CompareTag("lb_bird")){
+            birb = other.gameObject;
+            GrabBird();
+        }    
+    }
+    public void GrabBird()
+    {
+        Instantiate(featherEffect, transform.position, Quaternion.identity);
+        Destroy(birb);
     }
 }
