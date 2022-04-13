@@ -1,11 +1,13 @@
 using UnityEngine;
+using TMPro;
 
 public class CatchBirds : MonoBehaviour
 {
     [SerializeField] private GameObject featherEffect;
+    [SerializeField] private TextMeshProUGUI birbCountText;
     private GameObject birb;
     private bool canCatchBirb;
-    private int birbsCaught;
+    private int birbsLeft = 5;
 
     void Awake(){
         canCatchBirb = false;
@@ -26,8 +28,12 @@ public class CatchBirds : MonoBehaviour
             Instantiate(featherEffect, transform.position, Quaternion.identity);
         Destroy(birb);
 
-        birbsCaught++;
+        birbsLeft--;
 
+        if (birbsLeft > 0)
+        birbCountText.SetText("Birbs left: " + birbsLeft);
+        else
+        birbCountText.SetText("Yay! you caught all birbs!");
         canCatchBirb = false;
         }
     }
