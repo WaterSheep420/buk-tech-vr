@@ -16,18 +16,18 @@ namespace Buk.Motion
     [Header("Rotate")]
     public InputAction rotate;
     [Header("Speed and acceleration")]
-    public float moveAcceleration = 5f;
-    public float strafeAcceleration = 3f;
-    public float rotateVelocity = 1f;
-    public float jumpVelocity = 3f;
-    public float maxVelocity = 15f;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float rotateVelocity = 3f;
 
     private new CapsuleCollider collider;
     private Rigidbody body;
     private bool onGround = false;
     // The camera for the player.
-    public new Camera camera;
+    [SerializeField] private new Camera camera;
+    private Vector2 rotation;
 
+
+    [SerializeField] private CatchBirds birbScript;
     public void Awake()
     {
       collider = GetComponent<CapsuleCollider>();
@@ -42,11 +42,7 @@ namespace Buk.Motion
 
     public void Jump(InputAction.CallbackContext _)
     {
-      // If there's anything below the player.
-      if (onGround)
-      {
-        body.velocity += Vector3.up * jumpVelocity;
-      }
+      birbScript.GrabBird();
     }
     public void FixedUpdate()
     {
@@ -56,23 +52,16 @@ namespace Buk.Motion
         //Debug.Log($"Player is {(onGround ? "on" : "off")} the ground.");
       };
       // Rotate character in VR using controller, this value is always zero if using mouse look on the PC.
-      var rotation = rotate?.ReadValue<Vector2>() ?? Vector2.zero;
+      rotation = rotate?.ReadValue<Vector2>() ?? Vector2.zero;
       var movement = move?.ReadValue<Vector2>() ?? Vector2.zero;
-      // Must be on the ground
-      if (true || onGround)
-      {
+
+      body.velocity = (Quaternion.Euler(0, camera.transform.rotation.eulerAngles.y, 0) * new Vector3(movement.x * speed, body.velocity.y, movement.y * speed));
+      
+    }
+    void LateUpdate(){
         // Rotate the player, not the RigidBody (which is rotation locked relative to the player)
         transform.localRotation *= Quaternion.AngleAxis(rotation.x * rotateVelocity, Vector3.up);
-        body.AddRelativeForce(Quaternion.Euler(0, camera.transform.rotation.y, 0) * new Vector3(movement.x * strafeAcceleration, 0, movement.y * moveAcceleration), ForceMode.Acceleration);
-        // Limit velocity
-        var xzVelocity = new Vector3(body.velocity.x, 0, body.velocity.z);
-        var yVelocity = new Vector3(0, body.velocity.y, 0);
-        if (xzVelocity.magnitude > maxVelocity) {
-          body.velocity = xzVelocity.normalized * maxVelocity + yVelocity;
-        }
-      }
     }
-
     public void OnDestroy() {
       if (jump != null) {
         jump.performed -= Jump;

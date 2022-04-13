@@ -2,19 +2,33 @@ using UnityEngine;
 
 public class CatchBirds : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem featherEffect;
+    [SerializeField] private GameObject featherEffect;
     private GameObject birb;
+    private bool canCatchBirb;
+    private int birbsCaught;
 
-    void OnTriggerStay(Collider other)
+    void Awake(){
+        canCatchBirb = false;
+    }
+    void OnTriggerEnter(Collider other)
     {
-        if (Input.GetButtonDown("Jump") && other.gameObject.CompareTag("lb_bird")){
+        if (other.gameObject.CompareTag("lb_bird")){
+            canCatchBirb = true;
             birb = other.gameObject;
-            GrabBird();
         }    
+    }
+    void OnTriggerExit(Collider other){
+        canCatchBirb = false;
     }
     public void GrabBird()
     {
-        Instantiate(featherEffect, transform.position, Quaternion.identity);
+        if(canCatchBirb){
+            Instantiate(featherEffect, transform.position, Quaternion.identity);
         Destroy(birb);
+
+        birbsCaught++;
+
+        canCatchBirb = false;
+        }
     }
 }

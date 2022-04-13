@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.32328045, g: 0.8106392, b: 0.9289278, a: 1}
+  m_IndirectSpecularColor: {r: 0.32293558, g: 0.80933326, b: 0.92864156, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9240,8 +9240,8 @@ Transform:
   - {fileID: 803633375}
   - {fileID: 1400400362}
   - {fileID: 1927298855}
-  - {fileID: 1864684660}
   - {fileID: 1277528636}
+  - {fileID: 1864684660}
   - {fileID: 1757259117}
   - {fileID: 1073697191}
   - {fileID: 1754211909}
@@ -9653,11 +9653,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8593737713898898275, guid: 4b19d86f3e0e9f344b600ca085cb5f75, type: 3}
   m_PrefabInstance: {fileID: 1297646259}
-  m_PrefabAsset: {fileID: 0}
---- !u!20 &1303450644 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 3931231868147753799, guid: 0ee55b14366bbc7a79f47b77aceea68f, type: 3}
-  m_PrefabInstance: {fileID: 2123458266}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1303520638
 PrefabInstance:
@@ -15258,18 +15253,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3325898417727874386, guid: 0ee55b14366bbc7a79f47b77aceea68f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.9
-      objectReference: {fileID: 0}
     - target: {fileID: 3931231867528561426, guid: 0ee55b14366bbc7a79f47b77aceea68f, type: 3}
       propertyPath: m_Name
       value: Oculus Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3931231867528561452, guid: 0ee55b14366bbc7a79f47b77aceea68f, type: 3}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 1303450644}
     - target: {fileID: 3931231867528561453, guid: 0ee55b14366bbc7a79f47b77aceea68f, type: 3}
       propertyPath: m_RootOrder
       value: 1

@@ -180,11 +180,10 @@ MonoBehaviour:
       m_Action: Rotate
       m_Flags: 0
     m_Flags: 0
-  moveAcceleration: 50
-  strafeAcceleration: 50
+  speed: 5
   rotateVelocity: 1
-  jumpVelocity: 3
-  maxVelocity: 5
+  camera: {fileID: 3931231868147753799}
+  birbScript: {fileID: 627833096}
 --- !u!54 &3931231867528561449
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -262,7 +261,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3931231868019353077}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -627,7 +626,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3931231868177004141}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -644,7 +643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ba1ebc7e42caf449cb47560620d622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  featherEffect: {fileID: 19800000, guid: caf9ed1b35da9be4ca771c1c07c070cf, type: 3}
+  featherEffect: {fileID: 100000, guid: caf9ed1b35da9be4ca771c1c07c070cf, type: 3}
 --- !u!1 &3931231868520222783
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,7 +657,6 @@ GameObject:
   - component: {fileID: 3931231868520222776}
   - component: {fileID: 6221616880069004793}
   - component: {fileID: 2200289841514098761}
-  - component: {fileID: 469694689}
   m_Layer: 0
   m_Name: Left hand
   m_TagString: Untagged
@@ -810,24 +808,11 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3931231868520222783}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &469694689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3931231868520222783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1ba1ebc7e42caf449cb47560620d622, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  featherEffect: {fileID: 19800000, guid: caf9ed1b35da9be4ca771c1c07c070cf, type: 3}
 --- !u!1 &7578005138160826304
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,7 +837,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7578005138160826304}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3931231868147753800}
